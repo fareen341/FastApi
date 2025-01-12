@@ -28,3 +28,31 @@ op:
   }
 }
 ```
+
+# Optional Parameter
+- To make a field optional
+```python
+# to make sort_by optional
+# url: http://127.0.0.1:8000/blog/?limit=10&published=false
+
+from fastapi import FastAPI
+from typing import Optional
+app = FastAPI()
+
+@app.get('/blog/')
+def say(published: bool, sort_by: Optional[str] = None, limit: int = 9):
+    return {'Data': {'Blogs': f'{type(limit)} blog post and published is: {published} and sort by: {sort_by}.'}}
+```
+
+# Api Structure
+<pre>
+my_project/
+│
+├── app/
+│   ├── main.py
+│   ├── schemas.py
+│   ├── models.py
+│   └── routers/
+│       └── blog.py
+</pre>
+
